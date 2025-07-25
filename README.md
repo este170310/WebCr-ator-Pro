@@ -1,1 +1,1063 @@
 # WebCr-ator-Pro
+
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>WebCraft Pro - Création de Sites Web sur Mesure</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            line-height: 1.6;
+            color: #333;
+            overflow-x: hidden;
+        }
+
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 0 20px;
+        }
+
+        /* Header */
+        header {
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            color: white;
+            padding: 1rem 0;
+            position: fixed;
+            width: 100%;
+            top: 0;
+            z-index: 1000;
+            backdrop-filter: blur(10px);
+            box-shadow: 0 4px 20px rgba(0,0,0,0.1);
+        }
+
+        nav {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+
+        .logo {
+            font-size: 1.8rem;
+            font-weight: bold;
+            background: linear-gradient(45deg, #ff6b6b, #4ecdc4);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+        }
+
+        .nav-links {
+            display: flex;
+            list-style: none;
+            gap: 2rem;
+        }
+
+        .nav-links a {
+            color: white;
+            text-decoration: none;
+            transition: all 0.3s ease;
+            position: relative;
+        }
+
+        .nav-links a:hover {
+            color: #4ecdc4;
+            transform: translateY(-2px);
+        }
+
+        .nav-links a::after {
+            content: '';
+            position: absolute;
+            bottom: -5px;
+            left: 0;
+            width: 0;
+            height: 2px;
+            background: #4ecdc4;
+            transition: width 0.3s ease;
+        }
+
+        .nav-links a:hover::after {
+            width: 100%;
+        }
+
+        .admin-btn {
+            background: linear-gradient(45deg, #ff416c, #ff4b2b);
+            color: white;
+            border: none;
+            padding: 8px 16px;
+            border-radius: 20px;
+            cursor: pointer;
+            font-size: 0.9rem;
+            transition: all 0.3s ease;
+            box-shadow: 0 4px 15px rgba(255, 65, 108, 0.3);
+        }
+
+        .admin-btn:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 6px 25px rgba(255, 65, 108, 0.4);
+        }
+
+        /* Hero Section */
+        .hero {
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            color: white;
+            padding: 150px 0 100px;
+            text-align: center;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .hero::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            background: url('data:image/svg+xml,<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 100 100"><defs><pattern id="grain" width="100" height="100" patternUnits="userSpaceOnUse"><circle cx="25" cy="25" r="1" fill="rgba(255,255,255,0.1)"/><circle cx="75" cy="75" r="1" fill="rgba(255,255,255,0.1)"/></pattern></defs><rect width="100" height="100" fill="url(%23grain)"/></svg>');
+            opacity: 0.1;
+        }
+
+        .hero-content {
+            position: relative;
+            z-index: 1;
+        }
+
+        .hero h1 {
+            font-size: 3.5rem;
+            margin-bottom: 1rem;
+            animation: fadeInUp 1s ease-out;
+        }
+
+        .hero p {
+            font-size: 1.3rem;
+            margin-bottom: 2rem;
+            animation: fadeInUp 1s ease-out 0.2s both;
+        }
+
+        .cta-button {
+            background: linear-gradient(45deg, #ff6b6b, #4ecdc4);
+            color: white;
+            padding: 15px 40px;
+            border: none;
+            border-radius: 50px;
+            font-size: 1.1rem;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            box-shadow: 0 10px 30px rgba(0,0,0,0.2);
+            animation: fadeInUp 1s ease-out 0.4s both;
+        }
+
+        .cta-button:hover {
+            transform: translateY(-3px);
+            box-shadow: 0 15px 40px rgba(0,0,0,0.3);
+        }
+
+        /* Sections */
+        .section {
+            padding: 80px 0;
+        }
+
+        .section-title {
+            text-align: center;
+            font-size: 2.5rem;
+            margin-bottom: 3rem;
+            background: linear-gradient(45deg, #667eea, #764ba2);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+        }
+
+        /* Services */
+        .services-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 2rem;
+            margin-top: 2rem;
+        }
+
+        .service-card {
+            background: white;
+            padding: 2rem;
+            border-radius: 15px;
+            box-shadow: 0 10px 30px rgba(0,0,0,0.1);
+            transition: all 0.3s ease;
+            border: 1px solid #f0f0f0;
+        }
+
+        .service-card:hover {
+            transform: translateY(-10px);
+            box-shadow: 0 20px 50px rgba(0,0,0,0.15);
+        }
+
+        .service-icon {
+            width: 60px;
+            height: 60px;
+            background: linear-gradient(45deg, #ff6b6b, #4ecdc4);
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            margin-bottom: 1rem;
+            font-size: 1.5rem;
+        }
+
+        /* Portfolio */
+        .portfolio-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(350px, 1fr));
+            gap: 2rem;
+            margin-top: 2rem;
+        }
+
+        .portfolio-item {
+            background: white;
+            border-radius: 15px;
+            overflow: hidden;
+            box-shadow: 0 10px 30px rgba(0,0,0,0.1);
+            transition: all 0.3s ease;
+        }
+
+        .portfolio-item:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 20px 50px rgba(0,0,0,0.15);
+        }
+
+        .portfolio-image {
+            height: 200px;
+            background: linear-gradient(45deg, #667eea, #764ba2);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: white;
+            font-size: 1.2rem;
+        }
+
+        .portfolio-content {
+            padding: 1.5rem;
+        }
+
+        /* Pricing */
+        .pricing-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 2rem;
+            margin-top: 2rem;
+        }
+
+        .pricing-card {
+            background: white;
+            padding: 2rem;
+            border-radius: 15px;
+            box-shadow: 0 10px 30px rgba(0,0,0,0.1);
+            text-align: center;
+            transition: all 0.3s ease;
+            position: relative;
+        }
+
+        .pricing-card.featured {
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            color: white;
+            transform: scale(1.05);
+        }
+
+        .pricing-card:hover {
+            transform: translateY(-5px) scale(1.02);
+        }
+
+        .pricing-card.featured:hover {
+            transform: translateY(-5px) scale(1.07);
+        }
+
+        .price {
+            font-size: 3rem;
+            font-weight: bold;
+            color: #667eea;
+            margin: 1rem 0;
+        }
+
+        .pricing-card.featured .price {
+            color: white;
+        }
+
+        /* Contact Form Styles */
+        .contact-form {
+            max-width: 600px;
+            margin: 0 auto;
+            background: white;
+            padding: 2rem;
+            border-radius: 15px;
+            box-shadow: 0 10px 30px rgba(0,0,0,0.1);
+        }
+
+        .form-group {
+            margin-bottom: 1.5rem;
+        }
+
+        .form-group label {
+            display: block;
+            margin-bottom: 0.5rem;
+            font-weight: 600;
+            color: #333;
+        }
+
+        .form-group input,
+        .form-group textarea {
+            width: 100%;
+            padding: 12px;
+            border: 2px solid #e1e1e1;
+            border-radius: 8px;
+            font-size: 1rem;
+            transition: all 0.3s ease;
+            font-family: inherit;
+        }
+
+        .form-group input:focus,
+        .form-group textarea:focus {
+            outline: none;
+            border-color: #667eea;
+            box-shadow: 0 0 0 3px rgba(102, 126, 234, 0.1);
+        }
+
+        .form-group textarea {
+            resize: vertical;
+            min-height: 120px;
+        }
+
+        /* Form validation styles */
+        .form-group input:invalid:not(:focus):not(:placeholder-shown),
+        .form-group textarea:invalid:not(:focus):not(:placeholder-shown) {
+            border-color: #ff4757;
+        }
+
+        .form-group input:valid:not(:focus):not(:placeholder-shown),
+        .form-group textarea:valid:not(:focus):not(:placeholder-shown) {
+            border-color: #2ed573;
+        }
+
+        /* Success/Error message styles */
+        .form-message {
+            padding: 1rem;
+            border-radius: 8px;
+            margin: 1rem 0;
+            font-weight: 600;
+            opacity: 0;
+            transform: translateY(-10px);
+            transition: all 0.3s ease;
+        }
+
+        .form-message.show {
+            opacity: 1;
+            transform: translateY(0);
+        }
+
+        .form-message.success {
+            background-color: #d4edda;
+            color: #155724;
+            border: 1px solid #c3e6cb;
+        }
+
+        .form-message.error {
+            background-color: #f8d7da;
+            color: #721c24;
+            border: 1px solid #f5c6cb;
+        }
+
+        /* Footer */
+        footer {
+            background: #333;
+            color: white;
+            padding: 3rem 0 1rem;
+        }
+
+        .footer-content {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 2rem;
+            margin-bottom: 2rem;
+        }
+
+        .footer-section h3 {
+            margin-bottom: 1rem;
+            color: #4ecdc4;
+        }
+
+        /* Admin Panel */
+        .admin-panel {
+            position: fixed;
+            top: 0;
+            left: -400px;
+            width: 400px;
+            height: 100vh;
+            background: white;
+            z-index: 2000;
+            transition: left 0.3s ease;
+            box-shadow: 5px 0 20px rgba(0,0,0,0.1);
+            overflow-y: auto;
+        }
+
+        .admin-panel.active {
+            left: 0;
+        }
+
+        .admin-header {
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            color: white;
+            padding: 1rem;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+
+        .admin-content {
+            padding: 2rem;
+        }
+
+        .admin-section {
+            margin-bottom: 2rem;
+        }
+
+        .admin-section h3 {
+            margin-bottom: 1rem;
+            color: #667eea;
+        }
+
+        .admin-input {
+            width: 100%;
+            padding: 8px;
+            margin-bottom: 1rem;
+            border: 1px solid #ddd;
+            border-radius: 4px;
+        }
+
+        .admin-btn-secondary {
+            background: #667eea;
+            color: white;
+            border: none;
+            padding: 8px 16px;
+            border-radius: 4px;
+            cursor: pointer;
+            margin-right: 0.5rem;
+        }
+
+        .close-admin {
+            background: none;
+            border: none;
+            color: white;
+            font-size: 1.5rem;
+            cursor: pointer;
+        }
+
+        .overlay {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: rgba(0,0,0,0.5);
+            z-index: 1500;
+            opacity: 0;
+            visibility: hidden;
+            transition: all 0.3s ease;
+        }
+
+        .overlay.active {
+            opacity: 1;
+            visibility: visible;
+        }
+
+        /* Animations */
+        @keyframes fadeInUp {
+            from {
+                opacity: 0;
+                transform: translateY(30px);
+            }
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+
+        /* Responsive */
+        @media (max-width: 768px) {
+            .nav-links {
+                display: none;
+            }
+            
+            .hero h1 {
+                font-size: 2.5rem;
+            }
+            
+            .admin-panel {
+                width: 100%;
+                left: -100%;
+            }
+        }
+    </style>
+</head>
+<body>
+    <!-- Admin Panel -->
+    <div class="overlay" id="overlay"></div>
+    <div class="admin-panel" id="adminPanel">
+        <div class="admin-header">
+            <h2>Panneau d'Administration</h2>
+            <button class="close-admin" id="closeAdmin">&times;</button>
+        </div>
+        <div class="admin-content">
+            <div class="admin-section">
+                <h3>Informations générales</h3>
+                <input type="text" class="admin-input" id="siteTitle" placeholder="Titre du site">
+                <input type="text" class="admin-input" id="heroTitle" placeholder="Titre principal">
+                <textarea class="admin-input" id="heroSubtitle" placeholder="Sous-titre" rows="3"></textarea>
+                <button class="admin-btn-secondary" onclick="updateHero()">Mettre à jour</button>
+            </div>
+            
+            <div class="admin-section">
+                <h3>Contact</h3>
+                <input type="email" class="admin-input" id="contactEmail" placeholder="Email de contact">
+                <input type="tel" class="admin-input" id="contactPhone" placeholder="Téléphone">
+                <input type="text" class="admin-input" id="contactAddress" placeholder="Adresse">
+                <button class="admin-btn-secondary" onclick="updateContact()">Mettre à jour</button>
+            </div>
+            
+            <div class="admin-section">
+                <h3>Couleurs du thème</h3>
+                <input type="color" class="admin-input" id="primaryColor" value="#667eea">
+                <input type="color" class="admin-input" id="secondaryColor" value="#764ba2">
+                <button class="admin-btn-secondary" onclick="updateColors()">Appliquer</button>
+            </div>
+            
+            <div class="admin-section">
+                <h3>Services</h3>
+                <input type="text" class="admin-input" id="newServiceTitle" placeholder="Titre du service">
+                <textarea class="admin-input" id="newServiceDesc" placeholder="Description" rows="3"></textarea>
+                <button class="admin-btn-secondary" onclick="addService()">Ajouter Service</button>
+            </div>
+        </div>
+    </div>
+
+    <!-- Header -->
+    <header>
+        <nav class="container">
+            <div class="logo">WebCraft Pro</div>
+            <ul class="nav-links">
+                <li><a href="#accueil">Accueil</a></li>
+                <li><a href="#services">Services</a></li>
+                <li><a href="#portfolio">Portfolio</a></li>
+                <li><a href="#tarifs">Tarifs</a></li>
+                <li><a href="#contact">Contact</a></li>
+            </ul>
+            <button class="admin-btn" id="adminBtn">👤 Admin</button>
+        </nav>
+    </header>
+
+    <!-- Hero Section -->
+    <section class="hero" id="accueil">
+        <div class="container">
+            <div class="hero-content">
+                <h1 id="mainTitle">Création de Sites Web sur Mesure</h1>
+                <p id="mainSubtitle">Transformez votre vision en réalité digitale avec nos solutions web personnalisées et professionnelles</p>
+                <button class="cta-button" onclick="scrollToSection('contact')">Contacter un Pro</button>
+            </div>
+        </div>
+    </section>
+
+    <!-- Services -->
+    <section class="section" id="services">
+        <div class="container">
+            <h2 class="section-title">Nos Services</h2>
+            <div class="services-grid" id="servicesGrid">
+                <div class="service-card">
+                    <div class="service-icon">🎨</div>
+                    <h3>Design Personnalisé</h3>
+                    <p>Création de designs uniques et modernes adaptés à votre image de marque et à vos objectifs business.</p>
+                </div>
+                <div class="service-card">
+                    <div class="service-icon">📱</div>
+                    <h3>Site Responsive</h3>
+                    <p>Développement de sites web adaptatifs fonctionnant parfaitement sur tous les appareils et tailles d'écran.</p>
+                </div>
+                <div class="service-card">
+                    <div class="service-icon">🚀</div>
+                    <h3>Optimisation SEO</h3>
+                    <p>Optimisation complète pour les moteurs de recherche afin d'améliorer votre visibilité en ligne.</p>
+                </div>
+                <div class="service-card">
+                    <div class="service-icon">⚡</div>
+                    <h3>Performance</h3>
+                    <p>Sites ultra-rapides avec optimisation des temps de chargement et de l'expérience utilisateur.</p>
+                </div>
+                <div class="service-card">
+                    <div class="service-icon">🛡️</div>
+                    <h3>Sécurité</h3>
+                    <p>Implémentation des meilleures pratiques de sécurité pour protéger votre site et vos données.</p>
+                </div>
+                <div class="service-card">
+                    <div class="service-icon">🔧</div>
+                    <h3>Maintenance</h3>
+                    <p>Support technique continu et maintenance préventive pour assurer le bon fonctionnement de votre site.</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Portfolio -->
+    <section class="section" id="portfolio" style="background: #f8f9fa;">
+        <div class="container">
+            <h2 class="section-title">Notre Portfolio</h2>
+            <div class="portfolio-grid">
+                <div class="portfolio-item">
+                    <div class="portfolio-image">E-commerce Mode</div>
+                    <div class="portfolio-content">
+                        <h3>Boutique en ligne de vêtements</h3>
+                        <p>Site e-commerce complet avec système de paiement sécurisé et gestion des stocks.</p>
+                    </div>
+                </div>
+                <div class="portfolio-item">
+                    <div class="portfolio-image">Restaurant</div>
+                    <div class="portfolio-content">
+                        <h3>Site vitrine restaurant</h3>
+                        <p>Site élégant avec menu interactif, système de réservation et galerie photos.</p>
+                    </div>
+                </div>
+                <div class="portfolio-item">
+                    <div class="portfolio-image">Artisan</div>
+                    <div class="portfolio-content">
+                        <h3>Portfolio d'artisan</h3>
+                        <p>Site showcase mettant en valeur le savoir-faire avec galerie et formulaire de contact.</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Pricing -->
+    <section class="section" id="tarifs">
+        <div class="container">
+            <h2 class="section-title">Nos Tarifs</h2>
+            <div class="pricing-grid">
+                <div class="pricing-card">
+                    <h3>Site Vitrine</h3>
+                    <div class="price">€599</div>
+                    <ul style="text-align: left; margin: 1rem 0;">
+                        <li>✓ Design personnalisé</li>
+                        <li>✓ Jusqu'à 5 pages</li>
+                        <li>✓ Responsive design</li>
+                        <li>✓ Optimisation SEO de base</li>
+                        <li>✓ Formulaire de contact</li>
+                        <li>✓ 1 mois de support</li>
+                    </ul>
+                    <button class="cta-button">Choisir ce plan</button>
+                </div>
+                <div class="pricing-card featured">
+                    <h3>Site Professionnel</h3>
+                    <div class="price">€1299</div>
+                    <ul style="text-align: left; margin: 1rem 0;">
+                        <li>✓ Tout du plan Vitrine</li>
+                        <li>✓ Jusqu'à 15 pages</li>
+                        <li>✓ Panneau d'administration</li>
+                        <li>✓ Blog intégré</li>
+                        <li>✓ Optimisation SEO avancée</li>
+                        <li>✓ 3 mois de support</li>
+                    </ul>
+                    <button class="cta-button">Plan populaire</button>
+                </div>
+                <div class="pricing-card">
+                    <h3>E-commerce</h3>
+                    <div class="price">€2499</div>
+                    <ul style="text-align: left; margin: 1rem 0;">
+                        <li>✓ Tout du plan Professionnel</li>
+                        <li>✓ Boutique en ligne complète</li>
+                        <li>✓ Paiement sécurisé</li>
+                        <li>✓ Gestion des stocks</li>
+                        <li>✓ Tableau de bord vendeur</li>
+                        <li>✓ 6 mois de support</li>
+                    </ul>
+                    <button class="cta-button">Commencer</button>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Contact -->
+    <section class="section" id="contact" style="background: #f8f9fa;">
+        <div class="container">
+            <h2 class="section-title">Contactez-nous</h2>
+            <div class="contact-form">
+                <form id="contactForm">
+                    <div class="form-group">
+                        <label for="lastName">Nom *</label>
+                        <input type="text" id="lastName" name="lastName" required>
+                    </div>
+                    <div class="form-group">
+                        <label for="firstName">Prénom *</label>
+                        <input type="text" id="firstName" name="firstName" required>
+                    </div>
+                    <div class="form-group">
+                        <label for="email">Adresse mail *</label>
+                        <input type="email" id="email" name="email" required>
+                    </div>
+                    <div class="form-group">
+                        <label for="message">Messages *</label>
+                        <textarea id="message" name="message" rows="6" placeholder="Décrivez votre projet, vos besoins, vos idées..." required></textarea>
+                    </div>
+                    <div style="text-align: center; margin-top: 2rem;">
+                        <button type="submit" class="cta-button">Envoyer le message</button>
+                    </div>
+                </form>
+                
+                <!-- Success/Error Messages -->
+                <div id="formMessages" style="margin-top: 1rem; text-align: center;"></div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Footer -->
+    <footer>
+        <div class="container">
+            <div class="footer-content">
+                <div class="footer-section">
+                    <h3>WebCraft Pro</h3>
+                    <p>Votre partenaire pour la création de sites web professionnels et sur mesure.</p>
+                </div>
+                <div class="footer-section">
+                    <h3>Contact</h3>
+
+                </div>
+                <div class="footer-section">
+                    <h3>Services</h3>
+                    <p>• Création de sites web</p>
+                    <p>• Design graphique</p>
+                    <p>• Référencement SEO</p>
+                    <p>• Maintenance</p>
+                </div>
+            </div>
+            <div style="text-align: center; padding-top: 2rem; border-top: 1px solid #555;">
+                <p>&copy; 2025 WebCraft Pro. Tous droits réservés.</p>
+            </div>
+        </div>
+    </footer>
+
+    <!-- EmailJS CDN -->
+    <script src="https://cdn.jsdelivr.net/npm/@emailjs/browser@3/dist/email.min.js"></script>
+    
+    <script>
+        // EmailJS Configuration
+        // Configuration avec vos identifiants EmailJS
+        const EMAILJS_CONFIG = {
+            PUBLIC_KEY: '5u7QL60gszAUj5hts',  // Votre Public Key
+            SERVICE_ID: 'WebCréator_Pro',      // Votre Service ID
+            TEMPLATE_ID: 'template_c1wgcyj'   // À remplacer par votre Template ID
+        };
+
+        // Initialize EmailJS
+        emailjs.init(EMAILJS_CONFIG.PUBLIC_KEY);
+
+        // Site data storage
+        let siteData = {
+            title: "WebCraft Pro",
+            heroTitle: "Création de Sites Web sur Mesure",
+            heroSubtitle: "Transformez votre vision en réalité digitale avec nos solutions web personnalisées et professionnelles",
+            contact: {
+                email: "contact@webcraft-pro.fr",
+                phone: "+33 1 23 45 67 89",
+                address: "123 Rue du Web, 75001 Paris"
+            },
+            colors: {
+                primary: "#667eea",
+                secondary: "#764ba2"
+            },
+            services: []
+        };
+
+        // Admin panel functionality
+        const adminBtn = document.getElementById('adminBtn');
+        const adminPanel = document.getElementById('adminPanel');
+        const overlay = document.getElementById('overlay');
+        const closeAdmin = document.getElementById('closeAdmin');
+
+        adminBtn.addEventListener('click', () => {
+            adminPanel.classList.add('active');
+            overlay.classList.add('active');
+            loadAdminData();
+        });
+
+        closeAdmin.addEventListener('click', closeAdminPanel);
+        overlay.addEventListener('click', closeAdminPanel);
+
+        function closeAdminPanel() {
+            adminPanel.classList.remove('active');
+            overlay.classList.remove('active');
+        }
+
+        function loadAdminData() {
+            document.getElementById('siteTitle').value = siteData.title;
+            document.getElementById('heroTitle').value = siteData.heroTitle;
+            document.getElementById('heroSubtitle').value = siteData.heroSubtitle;
+            document.getElementById('contactEmail').value = siteData.contact.email;
+            document.getElementById('contactPhone').value = siteData.contact.phone;
+            document.getElementById('contactAddress').value = siteData.contact.address;
+            document.getElementById('primaryColor').value = siteData.colors.primary;
+            document.getElementById('secondaryColor').value = siteData.colors.secondary;
+        }
+
+        function updateHero() {
+            siteData.title = document.getElementById('siteTitle').value;
+            siteData.heroTitle = document.getElementById('heroTitle').value;
+            siteData.heroSubtitle = document.getElementById('heroSubtitle').value;
+            
+            document.querySelector('.logo').textContent = siteData.title;
+            document.getElementById('mainTitle').textContent = siteData.heroTitle;
+            document.getElementById('mainSubtitle').textContent = siteData.heroSubtitle;
+            document.title = siteData.title;
+            
+            showNotification('Informations mises à jour avec succès!');
+        }
+
+        function updateContact() {
+            siteData.contact.email = document.getElementById('contactEmail').value;
+            siteData.contact.phone = document.getElementById('contactPhone').value;
+            siteData.contact.address = document.getElementById('contactAddress').value;
+            
+            document.getElementById('footerEmail').innerHTML = `📧 ${siteData.contact.email}`;
+            document.getElementById('footerPhone').innerHTML = `📞 ${siteData.contact.phone}`;
+            document.getElementById('footerAddress').innerHTML = `📍 ${siteData.contact.address}`;
+            
+            showNotification('Informations de contact mises à jour!');
+        }
+
+        function updateColors() {
+            const primary = document.getElementById('primaryColor').value;
+            const secondary = document.getElementById('secondaryColor').value;
+            
+            siteData.colors.primary = primary;
+            siteData.colors.secondary = secondary;
+            
+            // Update CSS custom properties
+            document.documentElement.style.setProperty('--primary-color', primary);
+            document.documentElement.style.setProperty('--secondary-color', secondary);
+            
+            showNotification('Couleurs mises à jour!');
+        }
+
+        function addService() {
+            const title = document.getElementById('newServiceTitle').value;
+            const desc = document.getElementById('newServiceDesc').value;
+            
+            if (title && desc) {
+                const serviceCard = document.createElement('div');
+                serviceCard.className = 'service-card';
+                serviceCard.innerHTML = `
+                    <div class="service-icon">⭐</div>
+                    <h3>${title}</h3>
+                    <p>${desc}</p>
+                `;
+                
+                document.getElementById('servicesGrid').appendChild(serviceCard);
+                
+                document.getElementById('newServiceTitle').value = '';
+                document.getElementById('newServiceDesc').value = '';
+                
+                showNotification('Service ajouté avec succès!');
+            } else {
+                showNotification('Veuillez remplir tous les champs du service.', 'error');
+            }
+        }
+
+        // Utility functions
+        function scrollToSection(sectionId) {
+            document.getElementById(sectionId).scrollIntoView({ 
+                behavior: 'smooth' 
+            });
+        }
+
+        function showNotification(message, type = 'success') {
+            const notification = document.createElement('div');
+            notification.style.cssText = `
+                position: fixed;
+                top: 100px;
+                right: 20px;
+                background: ${type === 'success' ? '#4CAF50' : '#f44336'};
+                color: white;
+                padding: 1rem 2rem;
+                border-radius: 8px;
+                box-shadow: 0 4px 20px rgba(0,0,0,0.3);
+                z-index: 3000;
+                transform: translateX(400px);
+                transition: transform 0.3s ease;
+            `;
+            notification.textContent = message;
+            
+            document.body.appendChild(notification);
+            
+            setTimeout(() => {
+                notification.style.transform = 'translateX(0)';
+            }, 100);
+            
+            setTimeout(() => {
+                notification.style.transform = 'translateX(400px)';
+                setTimeout(() => {
+                    if (notification.parentNode) {
+                        notification.remove();
+                    }
+                }, 300);
+            }, 3000);
+        }
+
+        // Smooth scrolling for navigation links
+        document.querySelectorAll('.nav-links a').forEach(link => {
+            link.addEventListener('click', function(e) {
+                e.preventDefault();
+                const targetId = this.getAttribute('href').substring(1);
+                scrollToSection(targetId);
+            });
+        });
+
+        // Contact form functionality
+        document.getElementById('contactForm').addEventListener('submit', function(e) {
+            e.preventDefault();
+            
+            // Get form data
+            const formData = {
+                lastName: document.getElementById('lastName').value.trim(),
+                firstName: document.getElementById('firstName').value.trim(),
+                email: document.getElementById('email').value.trim(),
+                message: document.getElementById('message').value.trim()
+            };
+            
+            // Basic validation
+            if (!formData.lastName || !formData.firstName || !formData.email || !formData.message) {
+                showFormMessage('Veuillez remplir tous les champs obligatoires.', 'error');
+                return;
+            }
+            
+            // Email validation
+            const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
+            if (!emailRegex.test(formData.email)) {
+                showFormMessage('Veuillez entrer une adresse email valide.', 'error');
+                return;
+            }
+            
+            // Show loading state
+            const submitBtn = e.target.querySelector('.cta-button');
+            const originalText = submitBtn.textContent;
+            submitBtn.textContent = 'Envoi en cours...';
+            submitBtn.disabled = true;
+            
+            // SOLUTION 1: EmailJS (Service gratuit d'envoi d'emails) - ACTIF
+            emailjs.send(EMAILJS_CONFIG.SERVICE_ID, EMAILJS_CONFIG.TEMPLATE_ID, {
+                to_email: 'estebe.csgo@gmail.com',
+                from_name: formData.firstName + ' ' + formData.lastName,
+                reply_to: formData.email,
+                from_email: formData.email,
+                message: formData.message,
+                subject: 'Nouveau message depuis WebCraft Pro - ' + formData.firstName + ' ' + formData.lastName
+            }).then(function(response) {
+                console.log('Email envoyé avec succès!', response.status, response.text);
+                document.getElementById('contactForm').reset();
+                showFormMessage(`Merci ${formData.firstName} ! Votre message a été envoyé avec succès à notre équipe.`, 'success');
+                submitBtn.textContent = originalText;
+                submitBtn.disabled = false;
+            }, function(error) {
+                console.error('Erreur lors de l\'envoi:', error);
+                showFormMessage('Erreur lors de l\'envoi du message. Veuillez réessayer ou nous contacter directement.', 'error');
+                submitBtn.textContent = originalText;
+                submitBtn.disabled = false;
+            });
+            
+            // Les autres solutions sont désactivées car EmailJS est maintenant actif
+            /*
+            // SOLUTION 2: Formspree (Service gratuit)
+            // Décommentez cette section pour utiliser Formspree
+            /*
+            fetch('https://formspree.io/f/YOUR_FORM_ID', {
+                method: 'POST',
+                headers: {
+                    'Content-Type': 'application/json'
+                },
+                body: JSON.stringify({
+                    email: formData.email,
+                    name: formData.firstName + ' ' + formData.lastName,
+                    message: formData.message,
+                    _replyto: formData.email,
+                    _subject: 'Nouveau message depuis WebCraft Pro'
+                })
+            }).then(response => {
+                if (response.ok) {
+                    document.getElementById('contactForm').reset();
+                    showFormMessage(`Merci ${formData.firstName} ! Votre message a été envoyé.`, 'success');
+                } else {
+                    showFormMessage('Erreur lors de l\'envoi. Réessayez.', 'error');
+                }
+                submitBtn.textContent = originalText;
+                submitBtn.disabled = false;
+            }).catch(error => {
+                showFormMessage('Erreur réseau. Vérifiez votre connexion.', 'error');
+                submitBtn.textContent = originalText;
+                submitBtn.disabled = false;
+            });
+            */
+            
+            /*
+            // SOLUTION 3: Mailto (ouvre le client email) - DÉSACTIVÉE
+            const subject = encodeURIComponent('Nouveau message depuis WebCraft Pro');
+            const body = encodeURIComponent(`
+Nom: ${formData.lastName}
+Prénom: ${formData.firstName}
+Email: ${formData.email}
+
+Message:
+${formData.message}
+            `);
+            
+            // Ouvrir le client email par défaut
+            window.location.href = `mailto:estebe.csgo@gmail.com?subject=${subject}&body=${body}`;
+            
+            // Simulation pour l'interface (enlever si vous utilisez mailto uniquement)
+            setTimeout(() => {
+                document.getElementById('contactForm').reset();
+                showFormMessage(`${formData.firstName}, votre client email s'est ouvert. Envoyez le message pour finaliser.`, 'success');
+                submitBtn.textContent = originalText;
+                submitBtn.disabled = false;
+            }, 1000);
+            */
+        });
+
+        function showFormMessage(message, type) {
+            const messagesContainer = document.getElementById('formMessages');
+            
+            // Clear existing messages
+            messagesContainer.innerHTML = '';
+            
+            // Create message element
+            const messageEl = document.createElement('div');
+            messageEl.className = `form-message ${type}`;
+            messageEl.textContent = message;
+            
+            // Add to container
+            messagesContainer.appendChild(messageEl);
+            
+            // Trigger animation
+            setTimeout(() => {
+                messageEl.classList.add('show');
+            }, 100);
+            
+            // Auto-hide after 5 seconds for success messages
+            if (type === 'success') {
+                setTimeout(() => {
+                    messageEl.classList.remove('show');
+                    setTimeout(() => {
+                        if (messageEl.parentNode) {
+                            messageEl.remove();
+                        }
+                    }, 300);
+                }, 5000);
+            }
+        }
